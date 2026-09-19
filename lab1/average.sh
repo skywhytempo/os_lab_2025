@@ -1,14 +1,10 @@
 #!/bin/bash
-
 count=$#
-
-echo "Всего $count чисел"
-
+sum=0
 for i in "$@"
 do
     sum=$((sum + i))
 done
-
 avg=$((sum/count))
-
-echo $avg
+echo "Всего $count чисел"
+echo "Среднее: $avg"
