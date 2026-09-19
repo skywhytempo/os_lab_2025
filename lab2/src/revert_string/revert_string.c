@@ -2,6 +2,6 @@
 
 void RevertString(char *str)
 {
-	// your code here
+	
 }
 
