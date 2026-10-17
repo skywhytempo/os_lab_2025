@@ -4,6 +4,8 @@
 #include "find_min_max.h"
 #include "utils.h"
 
+// Сборка gcc: gcc sequential_min_max.c find_min_max.c utils.c -o sequential_min_max
+
 int main(int argc, char **argv) {
   if (argc != 3) {
     printf("Usage: %s seed arraysize\n", argv[0]);
