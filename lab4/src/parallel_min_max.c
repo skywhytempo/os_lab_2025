@@ -14,7 +14,7 @@
 #include "find_min_max.h"
 #include "utils.h"
 
-//Запуск: ./parallel_min_max --seed 42 --array_size 1000000 --pnum 4
+//Запуск: ./parallel_min_max --seed 42 --array_size 1000000 --pnum 4 --timeout 10
 
 static bool timeout_happened = false;
 
@@ -190,7 +190,7 @@ int main(int argc, char **argv) {
   // Ожидаем дочерние процессы
   while (active_child_processes > 0) {
     if (timeout_happened) {
-      printf("\n[TIMEOUT] Time limit (%d sec) exceeded! Sending SIGKILL to children...\n", timeout);
+      printf("\nТаймаут. Посылаем SIGKILL дочерним процессам.\n");
       for (int i = 0; i < pnum; i++) {
         kill(child_pids[i], SIGKILL);
       }
@@ -201,7 +201,6 @@ int main(int argc, char **argv) {
       }
       printf("All children terminated by timeout.\n");
       free(array);
-      //if (!with_files);
       return 1;
     }
 
@@ -209,7 +208,7 @@ int main(int argc, char **argv) {
       // Неблокирующее ожидание при заданном таймауте
       pid_t pid = waitpid(-1, NULL, WNOHANG);
       if (pid > 0) {
-        active_child_processes--;
+        active_child_processes -= 1;
       } else {
         usleep(10000); // 10 мс пауза, чтобы не нагружать процессор
       }

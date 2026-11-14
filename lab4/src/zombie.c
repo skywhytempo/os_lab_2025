@@ -18,9 +18,9 @@ int main() {
     } else {
         // Родитель НЕ вызывает wait(), а просто спит 20 секунд
         printf("Родительский процесс, PID: %d. Дочерний процесс(зомби): %d\n", getpid(), pid);
-        printf("[Parent] Sleeping for 30 seconds. Child is now a ZOMBIE!\n");
+        printf("Родительский процесс спит. Дочерний процесс теперь зомби!\n");
         sleep(30);
-        printf("[Parent] Exiting. Child adopted by init/systemd and reaped.\n");
+        printf("Родительский процесс завершается.\n");
     }
     /*
         PID    PPID STAT CMD
